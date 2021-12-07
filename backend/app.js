@@ -1,6 +1,6 @@
-// imports packages Express et Sequelize
+// imports Express (framework NodeJS) et Sequelize
 const express = require('express');
-const sequelize = require('sequelize');
+const { Sequelize } = require('sequelize');
 
 // import Routes
 const userRoutes = require('./routes/user');
@@ -18,23 +18,21 @@ app.use(express.json());
 // charge les variables d'environnement pour se connecter à la BDD
 require('dotenv').config();
 
-const mysql = require('mysql');
-
-const db = mysql.createConnection({
-
-    host: "localhost",
- 
-    user: "nom_utilisateur",
- 
-    password: "mot_de_passe_utilisateur"
- 
-  });
-
-db.connect(function(err) {
-    if (err) throw err;
-    console.log("Connecté à la base de données MySQL!");
+const db = new Sequelize(process.env.DB_HOST, process.env.DB_USER, process.env.DB_PASS, {
+  host: 'localhost',
+  dialect: 'mysql',
 });
 
+// test de connection
+const testConnection = async () => {
+  try {
+      await db.authenticate();
+      console.log('Connection has been established successfully.');
+  } catch (error) {
+      console.error('Unable to connect to the database:', error);
+  }
+};
+testConnection();
 
 
 
