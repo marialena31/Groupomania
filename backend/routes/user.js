@@ -1,16 +1,19 @@
-/* ROUTES UTILISATEURS */
+/* ROUTES USER */
 
-// import
 const express = require("express");
 const router = express.Router();
 const userCtrl = require("../controllers/user");
 const auth = require("../middleware/auth");
-const upload = require("../middleware/multer-config")
+const multer = require("../middleware/multer-config");
 
 
 // CRUD
-//router.get("/:id", auth, userCtrl.getOneUser);
-//router.get("/images/:id", auth, userCtrl.getProfilPicture);
-//router.put("/:id", auth, upload.single("images"), userCtrl.updateOneUser);
+/*
+router.post('/signup', userCtrl.signup);
+router.post('/login', userCtrl.login);
+router.get('/:id', auth, userCtrl.getUserProfile);
+router.put('/:id', auth, multer, userCtrl.modifyUserProfile);
+router.delete('/:id', auth, userCtrl.deleteAccount);
+*/
 
 module.exports = router;

@@ -1,25 +1,22 @@
 /* ROUTES POST */
 
-// imports
 const express = require('express');
 const router = express.Router();
 const postCtrl = require('../controllers/post');
+const likeCtrl = require('../controllers/like');
 const auth = require('../middleware/auth');
-const upload = require("../middleware/multer-config");
+const multer = require("../middleware/multer-config");
 
 
 // CRUD
-//router.get('/', auth, postCtrl.getAllPosts);
-//router.post('/', auth, upload.single("images"), postCtrl.createPost);
-//router.put('/:id', auth, postCtrl.updatePost);
-//router.delete('/:id', auth, postCtrl.deletePost);
+/*
+router.post('', auth, multer, postCtrl.createPost);
+router.get('', auth, postCtrl.getAllPosts);
+router.put('/:postId', auth, multer, postCtrl.modifyPost);
+router.delete('/:postId', auth, postCtrl.deletePost);
 
-// images
-//router.get('/images/:id', auth, postCtrl.getOneImage);
-
-// like & dislike
-//router.patch("/:id/likeunlike", auth, postCtrl.likeUnlikePost);
-//router.post("/:id/postLikedByUser", auth, postCtrl.postLikedByUser);
-//router.post("/:id/likeunlike", auth, postCtrl.countLikes);
+router.post('/:postId/like', auth, likeCtrl.likePost);
+router.get('/:postId/like', auth, likeCtrl.getAllLike);
+*/
 
 module.exports = router;
