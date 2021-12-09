@@ -1,9 +1,16 @@
 // imports
 const express = require('express');
-const { Sequelize } = require('sequelize');
+const sequelize = require('sequelize');
 const path = require('path'); 
 const app = express();
 const helmet = require("helmet");
+const db = require('./db');
+db.sync();
+
+//test connection BDD (à supprimer)
+app.get("/", (req, res) => {
+  res.json({ message: "Hello world" });
+});
 
 
 // import routers
@@ -31,29 +38,6 @@ app.use(express.json());
 app.use(helmet());
 // middleware pour dire à l'application de se servir du dossier images
 app.use('/images', express.static(path.join(__dirname, 'images')));
-
-
-// variables d'environnement pour se connecter à la BDD
-require('dotenv').config();
-
-const db = new Sequelize(process.env.DB_HOST, process.env.DB_USER, process.env.DB_PASS, {
-  host: 'localhost',
-  dialect: 'mysql',
-});
-
-// test de connection
-const testConnection = async () => {
-  try {
-      await sequelize.authenticate();
-      console.log('Connection has been established successfully.');
-  } catch (error) {
-      console.error('Unable to connect to the database:', error);
-  }
-};
-testConnection();
-
-
-
 
 
 // routes
