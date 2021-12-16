@@ -5,6 +5,7 @@ const path = require('path');
 const app = express();
 const helmet = require("helmet");
 const db = require('./db');
+const user = require('./models/user.js');
 db.sync();
 
 //test connection BDD (à supprimer)
@@ -44,7 +45,6 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/user', userRoutes);
 app.use("/api/post", postRoutes);
 app.use("/api/comment", commentRoutes);
-
 
 
 // exportation de la const app pour y accéder depuis les autres fichiers du projet
