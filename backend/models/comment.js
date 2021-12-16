@@ -1,9 +1,10 @@
 /* MODEL DE DONNEES COMMENTAIRE */
-'use strict';
-const { Model } = require('sequelize');
 
-module.exports = (sequelize, DataTypes) => {
-    class Comment extends Model {
+const Sequelize = require('sequelize');
+const db = require('../db');
+
+
+    /*class Comment extends Model {
         static associate(models) {
             Comment.belongsTo(models.User, {
                 foreignKey: {
@@ -18,30 +19,23 @@ module.exports = (sequelize, DataTypes) => {
                     onDelete: 'cascade'
                 }
             });
-        }
-    };
+        };*/
 
-    Comment.init({
+const Comment = db.define('comment',{
         content: {
-            type : DataTypes.TEXT,
+            type : Sequelize.TEXT,
             allowNull: false
         },
         date: {
-            type: DataTypes.DATEONLY,
+            type: Sequelize.DATEONLY,
             allowNull: false
         },
         userId: {
-            type: DataTypes.INTEGER
+            type: Sequelize.INTEGER
         },
         postId: {
-            type: DataTypes.INTEGER
+            type: Sequelize.INTEGER
         }          
-    },
-        {
-        sequelize,
-        modelName: 'Comment',
-        }
-    );
+});
 
-    return Comment;
-};
+module.exports = Comment;

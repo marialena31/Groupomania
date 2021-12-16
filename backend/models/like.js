@@ -1,9 +1,9 @@
 /* MODEL DE DONNEES LIKE */
-'use strict';
-const { Model } = require('sequelize');
 
-module.exports = (sequelize, DataTypes) => {
-    class Like extends Model {
+const Sequelize = require('sequelize');
+const db = require('../db');
+
+    /*class Like extends Model {
         static associate(models) {
             Like.belongsTo(models.User, { 
                 foreignKey: {
@@ -17,22 +17,15 @@ module.exports = (sequelize, DataTypes) => {
                     onDelete:'cascade'
                 }
             })
-        }
-    };
+        };*/
 
-    Like.init({
+const Like = db.define('like',{
         userId: {
-            type: DataTypes.INTEGER
+            type: Sequelize.INTEGER
         },
         postId: {
-            type: DataTypes.INTEGER
+            type: Sequelize.INTEGER
         } 
-    }, 
-        {
-        sequelize,
-        modelName: 'Like',
-        }
-    );
-    
-    return Like;
-  };
+});
+
+module.exports = Like;

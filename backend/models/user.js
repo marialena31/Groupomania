@@ -1,99 +1,50 @@
 /* MODEL DE DONNEES UTILISATEUR */
-const sequelize = require('sequelize');
+
+const Sequelize = require('sequelize');
 const db = require('../db');
 
-const user = db.define('User', {
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        allowNull: false,
-        primaryKey: true
-    },
+/*class User extends Model {
+    static associate(models) {
+        User.hasMany(models.Post, {
+            onDelete: 'cascade'
+        })
+        User.hasMany(models.Comment, {
+            onDelete: 'cascade'
+        })
+        User.hasMany(models.Like, {
+            onDelete: 'cascade'
+        })
+    }
+};*/
+
+const User = db.define('user', {
     firstname: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: false
     },
     lastname: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false
     },
     email: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false
     },
     password: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false
     },
     avatarUrl: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false
     },
     bio: {
-        type: DataTypes.TEXT
+        type: Sequelize.TEXT
     },
     isAdmin: {
-        type: DataTypes.BOOLEAN,
+        type: Sequelize.BOOLEAN,
         allowNull: false
     }
 });
-module.exports = user;
 
-
-
-/*const { Model } = require('sequelize');
-
-module.exports = (sequelize, DataTypes) => {
-    class User extends Model {
-        static associate(models) {
-            User.hasMany(models.Post, {
-                onDelete: 'cascade'
-            })
-            User.hasMany(models.Comment, {
-                onDelete: 'cascade'
-            })
-            User.hasMany(models.Like, {
-                onDelete: 'cascade'
-            })
-        }
-    };
-
-    User.init({
-        firstname: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        lastname: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        email: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        avatarUrl: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        bio: {
-            type: DataTypes.TEXT
-        },
-        isAdmin: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false
-        }
-    },  
-        {
-        sequelize,
-        modelName: 'User'
-        }
-    );
-    return User;
-  };*/
-
-
-  db.sync()
+module.exports = User;

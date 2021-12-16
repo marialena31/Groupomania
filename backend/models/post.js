@@ -1,9 +1,10 @@
 /* MODEL DE DONNEES ARTICLE */
-'use strict';
-const { Model } = require('sequelize');
 
-module.exports = (sequelize, DataTypes) => {
-    class Post extends Model {
+const Sequelize = require('sequelize');
+const db = require('../db');
+
+
+    /*class Post extends Model {
         static associate(models) {
             Post.belongsTo(models.User, {
                 foreignKey: {
@@ -13,37 +14,32 @@ module.exports = (sequelize, DataTypes) => {
             })
             Post.hasMany(models.Comment)
             Post.hasMany(models.Like)
-        }
-    };
+        };*/
+ 
 
-    Post.init({
+const Post = db.define('post',{
         title: {
-            type: DataTypes.STRING,
+            type: Sequelize.STRING,
             allowNull: false
         },
         imageUrl: {
-            type: DataTypes.STRING
+            type: Sequelize.STRING
         },
         content: {
-            type: DataTypes.TEXT,
+            type: Sequelize.TEXT,
             allowNull: false
         },
         date: {
-            type: DataTypes.DATEONLY,
+            type: Sequelize.DATEONLY,
             allowNull: false
         },
         userId: {
-            type: DataTypes.INTEGER
+            type: Sequelize.INTEGER
         },
         likes: {
-            type: DataTypes.INTEGER
+            type: Sequelize.INTEGER
         }
-    },  
-        {
-        sequelize,
-        modelName: 'Post',
-        }
-    );
+});
     
-    return Post;
-};
+module.exports = Post;
+
