@@ -6,6 +6,9 @@ const app = express();
 const helmet = require("helmet");
 const db = require('./db');
 const user = require('./models/user.js');
+const post = require('./models/post.js');
+const comment = require('./models/comment.js');
+const like = require('./models/like.js');
 db.sync();
 
 //test connection BDD (à supprimer)
