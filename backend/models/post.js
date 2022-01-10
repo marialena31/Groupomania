@@ -1,21 +1,7 @@
 /* MODEL DE DONNEES ARTICLE */
 
 const Sequelize = require('sequelize');
-const db = require('../db');
-
-
-    /*class Post extends Model {
-        static associate(models) {
-            Post.belongsTo(models.User, {
-                foreignKey: {
-                    allowNull: false,
-                    onDelete: 'cascade'
-                }
-            })
-            Post.hasMany(models.Comment)
-            Post.hasMany(models.Like)
-        };*/
- 
+const db = require('../db'); 
 
 const Post = db.define('post',{
         title: {
@@ -40,6 +26,9 @@ const Post = db.define('post',{
             type: Sequelize.INTEGER
         }
 });
-    
+
+
+
+
 module.exports = Post;
 

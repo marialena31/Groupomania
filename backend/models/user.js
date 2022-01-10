@@ -3,24 +3,10 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 
-/*class User extends Model {
-    static associate(models) {
-        User.hasMany(models.Post, {
-            onDelete: 'cascade'
-        })
-        User.hasMany(models.Comment, {
-            onDelete: 'cascade'
-        })
-        User.hasMany(models.Like, {
-            onDelete: 'cascade'
-        })
-    }
-};*/
-
 const User = db.define('user', {
     firstname: {
-      type: Sequelize.STRING,
-      allowNull: false
+        type: Sequelize.STRING,
+        allowNull: false
     },
     lastname: {
         type: Sequelize.STRING,
@@ -46,5 +32,8 @@ const User = db.define('user', {
         allowNull: false
     }
 });
+
+
+
 
 module.exports = User;
